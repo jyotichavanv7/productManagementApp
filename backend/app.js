@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const productRoute = require("./routes/productRoute");
 
@@ -10,6 +11,7 @@ const MONGO_URI = process.env.MONGO_URI;
 
 // 1. ADDED THIS LINE: Crucial middleware to read data sent in req.body
 app.use(express.json());
+app.use(cors());
 
 mongoose.connect(MONGO_URI)
     .then(() => {
